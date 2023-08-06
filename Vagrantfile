@@ -60,6 +60,12 @@ Vagrant.configure(2) do |config|
     sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
     sudo systemctl restart containerd
 
+    # Install Helm
+    curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -
+    echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+    sudo apt update
+    sudo apt install helm
+
     # Install etcdctl
     export RELEASE=$(curl -s https://api.github.com/repos/etcd-io/etcd/releases/latest|grep tag_name | cut -d '"' -f 4)
     wget https://github.com/etcd-io/etcd/releases/download/${RELEASE}/etcd-${RELEASE}-linux-amd64.tar.gz
