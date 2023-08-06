@@ -24,6 +24,8 @@ boxes = [
 Vagrant.configure(2) do |config|
   config.vm.box = "generic/ubuntu2004"
 
+  config.vbguest.auto_update = false if Vagrant.has_plugin?("vagrant-vbguest")
+
   boxes.each do |opts|
       config.vm.define opts[:name] do |config|
         config.vm.hostname = opts[:name]
