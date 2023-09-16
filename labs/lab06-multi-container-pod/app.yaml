@@ -10,7 +10,7 @@ spec:
     - wget
     - "-O"
     - "/usr/shared/app/config.json"
-    - https://raw.githubusercontent.com/brahimhamdi/ckad-lab/master/labs/lab6/config.json
+    - https://raw.githubusercontent.com/brahimhamdi/ckad-lab/master/labs/lab06-multi-container-pod/app/config/config.json
     volumeMounts:
     - name: configdir
       mountPath: "/usr/shared/app"
