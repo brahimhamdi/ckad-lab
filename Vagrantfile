@@ -10,19 +10,19 @@ boxes = [
     {
         :name => "kube-node1",
         :eth1 => "192.168.56.11",
-        :mem => "4096",
+        :mem => "1024",
         :cpu => "1"
-#    },
-#    {
-#        :name => "kube-node2",
-#        :eth1 => "192.168.56.12",
-#        :mem => "2048",
-#        :cpu => "1"
+    },
+    {
+        :name => "kube-node2",
+        :eth1 => "192.168.56.12",
+        :mem => "2048",
+        :cpu => "1"
     }
 ]
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "generic/ubuntu2004"
+  config.vm.box = "generic/ubuntu2204"
 
   config.vbguest.auto_update = false if Vagrant.has_plugin?("vagrant-vbguest")
 
