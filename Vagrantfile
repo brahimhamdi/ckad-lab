@@ -10,14 +10,14 @@ boxes = [
     {
         :name => "kube-node1",
         :eth1 => "192.168.56.11",
-        :mem => "1024",
+        :mem => "4096",
         :cpu => "1"
-    },
-    {
-        :name => "kube-node2",
-        :eth1 => "192.168.56.12",
-        :mem => "1024",
-        :cpu => "1"
+#    },
+#    {
+#        :name => "kube-node2",
+#        :eth1 => "192.168.56.12",
+#        :mem => "2048",
+#        :cpu => "1"
     }
 ]
 
@@ -63,6 +63,7 @@ Vagrant.configure(2) do |config|
     sudo containerd config default | sudo tee /etc/containerd/config.toml
     sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
     sudo systemctl restart containerd
+    sudo crictl config runtime-endpoint /var/run/containerd/containerd.sock
 
     # Install Helm
     curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -
