@@ -65,6 +65,9 @@ Vagrant.configure("2") do |config|
     sudo mv kustomize /usr/bin/
     # Init Cluster
     sudo kubeadm init --apiserver-advertise-address 192.168.56.220 --pod-network-cidr 10.32.0.0/12
+
+    # Next commands issues !!!
+
     sudo mkdir -p $HOME/.kube
     sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
     sudo chown -R $(id -u):$(id -g) $HOME/.kube
