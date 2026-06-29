@@ -3,7 +3,7 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "ckad-vm"
   config.vm.network "private_network", ip: "192.168.56.220"
   config.vm.provider "virtualbox" do |vb|
-    vb.name = "ckad-VM"
+    vb.name = "ckad-vm"
     vb.memory = "4096"
     vb.cpus = "2"
   end
@@ -72,7 +72,7 @@ Vagrant.configure("2") do |config|
     sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
     sudo chown -R $(id -u):$(id -g) $HOME/.kube
     kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
-    kubectl taint node ckad-VM node-role.kubernetes.io/control-plane:NoSchedule-
+    kubectl taint node ckad-vm node-role.kubernetes.io/control-plane:NoSchedule-
 
   SHELL
 end
