@@ -4,8 +4,8 @@ Vagrant.configure("2") do |config|
   config.vm.network "private_network", ip: "192.168.56.220"
   config.vm.provider "virtualbox" do |vb|
     vb.name = "ckad-vm"
-    vb.memory = "4096"
-    vb.cpus = "2"
+    vb.memory = "8192"
+    vb.cpus = "4"
   end
   config.vm.provision "shell", inline: <<-SHELL
     apt --allow-unauthenticated update
