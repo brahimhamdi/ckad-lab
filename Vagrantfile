@@ -47,7 +47,7 @@ Vagrant.configure("2") do |config|
     curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.36/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
     sudo apt update
     sudo apt install -y kubelet kubeadm kubectl
-    echo "source <(kubectl completion bash)" >> ~/.bashrc
+
     # swap off
     sudo swapoff -a
     sudo sed -i '/swap/s/^/#/' /etc/fstab
@@ -57,7 +57,13 @@ Vagrant.configure("2") do |config|
     sudo usermod -aG docker vagrant
     # Install Helm
     sudo snap install helm --classic
+
+    # Auto-completion
+    echo "source <(kubectl completion bash)" >> ~/.bashrc
+    echo "complete -o default -F __start_kubectl k" >> ~/.bashrc
     echo "source <(helm completion bash)" >> ~/.bashrc
+    source ~/.bashrc
+
     # Install Kustomize
     wget "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"
     chmod +x install_kustomize.sh
@@ -66,7 +72,7 @@ Vagrant.configure("2") do |config|
     # Init Cluster
     sudo kubeadm init --apiserver-advertise-address 192.168.56.220 --pod-network-cidr 10.32.0.0/12
 
-    # Next commands issues !!!
+    # Post-init
 
     sudo mkdir -p $HOME/.kube
     sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
