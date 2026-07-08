@@ -52,8 +52,8 @@ Vagrant.configure("2") do |config|
     sudo swapoff -a
     sudo sed -i '/swap/s/^/#/' /etc/fstab
     sudo rm -f /swap.img
-    # Install Docker, openjdk, maven, ...
-    sudo apt install -y git docker-ce openjdk-21-jdk maven mariadb-client
+    # Install Docker, Podman, openjdk, maven, ...
+    sudo apt install -y git docker-ce podman openjdk-21-jdk maven mariadb-client
     sudo usermod -aG docker vagrant
     # Install Helm
     sudo snap install helm --classic
