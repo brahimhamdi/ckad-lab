@@ -78,6 +78,8 @@ Vagrant.configure("2") do |config|
     sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
     sudo chown -R $(id -u):$(id -g) $HOME/.kube
     kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
+    kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+    kubectl patch deployment metrics-server -n kube-system --type='json' -p='[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--kubelet-insecure-tls"}]'
     kubectl taint node ckad-vm node-role.kubernetes.io/control-plane:NoSchedule-
 
   SHELL
